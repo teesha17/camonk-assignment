@@ -51,12 +51,10 @@ export default function CreateBlog() {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      {/* Button on Home Page */}
       <DialogTrigger asChild>
         <Button className="w-full">+ Create a Blog</Button>
       </DialogTrigger>
 
-      {/* Modal Overlay */}
       <DialogContent className="max-w-2xl">
         <DialogHeader>
           <DialogTitle>Create New Blog</DialogTitle>
@@ -85,14 +83,26 @@ export default function CreateBlog() {
           <Textarea
             placeholder="Short Description"
             value={form.description}
-            onChange={(e) => setForm({ ...form, description: e.target.value })}
+            onChange={(e) => {
+              setForm({ ...form, description: e.target.value });
+
+              e.target.style.height = "auto";
+              e.target.style.height = Math.min(e.target.scrollHeight, 160) + "px";
+            }}
+            className="w-full resize-none overflow-auto min-h-[80px] max-h-[160px]"
           />
+
 
           <Textarea
             placeholder="Full Blog Content"
-            rows={6}
             value={form.content}
-            onChange={(e) => setForm({ ...form, content: e.target.value })}
+            onChange={(e) => {
+              setForm({ ...form, content: e.target.value });
+
+              e.target.style.height = "auto";
+              e.target.style.height = Math.min(e.target.scrollHeight, 320) + "px";
+            }}
+            className="w-full resize-none overflow-auto min-h-[120px] max-h-[320px]"
           />
 
           <Button type="submit" className="w-full">

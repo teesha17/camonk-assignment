@@ -10,7 +10,6 @@ export default function BlogList({ onSelect, selectedId, setSelectedId }) {
     queryFn: fetchBlogs,
   });
 
-  // Auto-select first blog when data loads
   useEffect(() => {
     if (data?.length && selectedId === null) {
       setSelectedId(data[0].id);
